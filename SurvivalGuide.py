@@ -55,7 +55,21 @@ def Notas():
     Netiqueta.pack(pady=10)
 
     Ncaja = tk.Text(Notas, font=("Arial", 8), bg="white")
-    Ncaja.insert("1.0", """PRIMER PARCIAL (1P)Evidencia de Conocimiento: 40%Evidencia de Desempeño: 20%Evidencia de Producto: 30%Proyecto Integrador: 10%SEGUNDO PARCIAL (2P)Evidencia de Conocimiento: 40%Evidencia de Desempeño: 20%Evidencia de Producto: 30%Proyecto Integrador: 10%TERCER PARCIAL (3P)Evidencia de Conocimiento: 10%Evidencia de Desempeño: 10%Evidencia de Producto: 30%Proyecto Integrador: 50%""")    
+    Ncaja.insert("1.0", """PRIMER PARCIAL (1P)
+    • Evidencia de Conocimiento: 40%
+    • Evidencia de Desempeño: 20%
+    • Evidencia de Producto: 30%
+    • Proyecto Integrador: 10%
+SEGUNDO PARCIAL (2P)
+    • Evidencia de Conocimiento: 40%
+    • Evidencia de Desempeño: 20%
+    • Evidencia de Producto: 30%
+    • Proyecto Integrador: 10%
+TERCER PARCIAL (3P)
+    • Evidencia de Conocimiento: 10%
+    • Evidencia de Desempeño: 10%
+    • Evidencia de Producto: 30%
+    • Proyecto Integrador: 50%""")    
     Ncaja.pack(pady=10)
 
     def Cnotas():
