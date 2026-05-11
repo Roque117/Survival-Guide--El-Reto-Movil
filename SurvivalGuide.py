@@ -1,12 +1,21 @@
 from pydoc import text
 import tkinter as tk
 import random
-from tkinter import messagebox  
-
+from tkinter import messagebox
+from tkinter import font  
 from sympy import Lambda
 
 correctasR = 0
 actpreg = {}
+
+correctasN = 0
+actpregN = {}
+
+correctasS = 0
+actpregS = {}
+
+correctasL = 0
+actpregL = {}
 
 def Reglas():
     
@@ -76,10 +85,8 @@ def Reglas():
             
             if RespR == actpreg["r"]:
                 correctasR = correctasR + 1
-                print(f"Correctas: {correctasR}")
             else:
                 correctasR = 0
-                print("Mal")
             
             if correctasR < 2:
                 campreg()
@@ -89,7 +96,7 @@ def Reglas():
                 boton2.config(state="normal")
                 Creglas.destroy()
                 Reglas.destroy()
-                messagebox.showinfo("Bien", "Se ha desbloqueado El Oráculo de las Notas")
+                messagebox.showinfo("Siguiente Nivel", "Se ha desbloqueado El Oráculo de las Notas")
         
         bot1R = tk.Button(Creglas, text="si", font=("Arial", 12), bg="white", command=lambda: verificacion(True))
         bot1R.pack(pady=20)
@@ -99,19 +106,11 @@ def Reglas():
         
         campreg()
         
-
-        
-            
-        
-        
     botonR = tk.Button(Reglas,text="Cuestionario", font=("Arial", 8), bg="white", command=Creglas)
     botonR.pack(pady=50)    
     
     
     
-
-
-
 
 def Notas():
     Notas=tk.Toplevel(ventana)
@@ -145,6 +144,58 @@ TERCER PARCIAL (3P)
         Cnotas.config(bg="lightyellow")
         Cnotas.geometry("600x600")
         Cnotas.title("Cuestionario de El Oráculo de las  Notas")
+        
+        PregN = [
+            {"n": "¿Cuanto vale la Evidencia de Conocimiento del Primer Parcial?", "nr": ["40", "cuarenta", "40%"]},
+            {"n": "¿Cuanto vale la Evidencia de Conocimiento del Segundo Parcial?", "nr": ["40", "cuarenta", "40%"]},
+            {"n": "¿Cuanto vale la Evidencia de Conocimiento del Tercer Parcial?", "nr": ["10", "diez", "10%"]},
+            {"n": "¿Cuanto vale la Evidencia de Desempeño del Primer Parcial?", "nr": ["20","veinte", "20%"]},
+            {"n": "¿Cuanto vale la Evidencia de Desempeño del Segundo Parcial?", "nr": ["20","veinte", "20%"]},
+            {"n": "¿Cuanto vale la Evidencia de Desempeño del Tercer Parcial?", "nr": ["10", "diez", "10%"]},
+            {"n": "¿Cuanto vale la Evidencia de Producto del Primer Parcial?", "nr": ["30", "treinta", "30%"]},
+            {"n": "¿Cuanto vale la Evidencia de Producto del Segundo Parcial?", "nr": ["30", "treinta", "30%"]},
+            {"n": "¿Cuanto vale la Evidencia de Producto del Tercer Parcial?", "nr": ["30", "treinta", "30%"]},
+            {"n": "¿Cuanto vale el Proyecto Integrador en el Primer Parcial?", "nr": ["10", "diez", "10%"]},
+            {"n": "¿Cuanto vale el Proyecto Integrador en el Segundo Parcial?", "nr": ["10", "diez", "10%"]},
+            {"n": "¿Cuanto vale el Proyecto Integrador en el Tercer Parcial?", "nr": ["50","cincuenta", "50%"]}
+        ]        
+        
+        Npreg = tk.Label(Cnotas, text="", font=("Arial", 12), bg="white")
+        Npreg.pack(pady="20")
+        
+        UsuN = tk.Entry(Cnotas, font=("Arial",  12), justify="center")
+        UsuN.pack(pady=20)
+        
+        def CamrespN():
+            global actpregN
+            actpregN = random.choice(PregN)
+            Npreg.config(text=actpregN["n"])
+            UsuN.delete(0, tk.END)
+        
+        def verificacionN():
+            global correctasN
+            RespN = UsuN.get().lower()
+            
+            if RespN in actpregN["nr"]:
+                correctasN = correctasN + 1
+            else:
+                correctasN = 0
+            
+            if correctasN < 2:
+                CamrespN()
+            else:
+                boton3.config(state="normal")
+                Cnotas.destroy()
+                Notas.destroy()
+                messagebox.showinfo("Nivel 2 completado", "Se a completado el Oráculo de las Notas")
+            
+        UsuNbot = tk.Button(Cnotas, text="Enviar", font=("Arial", 12), bg="white", command=verificacionN)
+        UsuNbot.pack(pady=20)
+        
+        CamrespN()
+                 
+        
+        
         
 
     botonN = tk.Button(Notas, text="Cuestionario", font=("Arial", 12), bg="white", command=Cnotas)
@@ -227,19 +278,19 @@ ventana.config(bg="black")
 ventana.title("Survival Guide")
 ventana.geometry("600x600")
 
-etiqueta = tk.Label(ventana, text="Survival Guide", font=("Arial", 24), bg="black", fg="white")
+etiqueta = tk.Label(ventana, text="--SURVIVAL GUIDE--", font=("Arial", 24), bg="black", fg="white")
 etiqueta.pack(pady=(0, 20))
 
-Boton1=tk.Button(ventana, text="La Cámara de las Reglas", font=("Arial", 16), bg="Red", command=Reglas)
+Boton1=tk.Button(ventana, text="La Cámara de las Reglas", font=("Arial", 16), bg="Red", command=Reglas, fg="white")
 Boton1.pack(pady=10)
 
-boton2=tk.Button(ventana, text="El Oráculo de las Notas", font=("Arial", 16), bg="blue", command=Notas, state="disabled")
+boton2=tk.Button(ventana, text="El Oráculo de las Notas", font=("Arial", 16), bg="blue", command=Notas, fg="white", state="disabled")
 boton2.pack(pady=10)
 
-boton3=tk.Button(ventana, text="Skills a desbloquear", font=("Arial", 16), bg="green", command=Skills, state="disabled")
+boton3=tk.Button(ventana, text="Skills a desbloquear", font=("Arial", 16), bg="green", command=Skills, fg="white", state="disabled")
 boton3.pack(pady=10)
 
-boton4=tk.Button(ventana, text="La Línea del Tiempo", font=("Arial", 16), bg="orange", command=LineaTiempo, state="disabled")
+boton4=tk.Button(ventana, text="La Línea del Tiempo", font=("Arial", 16), bg="orange", command=LineaTiempo, fg="white", state="disabled")
 boton4.pack(pady=10)
 
 ventana.mainloop()
