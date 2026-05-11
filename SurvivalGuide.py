@@ -1,6 +1,15 @@
+from pydoc import text
 import tkinter as tk
+import random
+from tkinter import messagebox  
+
+from sympy import Lambda
+
+correctasR = 0
+actpreg = {}
 
 def Reglas():
+    
     Reglas=tk.Toplevel(ventana)
     Reglas.config(bg="Lightcyan")
     Reglas.title("La Cámara de las Reglas")
@@ -30,17 +39,76 @@ def Reglas():
 16. El día destinado a entrega de calificaciones todos los estudiantes deben estar presentes, ese día se entregarán exámenes y se  brindará retroalimentación.
 17. Este reglamento entra en vigor después de que se firme o se acepte por la mayoría de los estudiantes asistentes a la primera  sesión de la materia, una vez firmado o aceptado por el 50% más el jefe de grupo, es vigente para todo alumno inscrito en el curso  aunque no esté presente en la primera sesión.""")
     CajaR.pack(pady=10)
+
+
     
     def Creglas():
+        global pregunta_actual
         Creglas = tk.Toplevel(Reglas)
         Creglas.configure(bg="lightyellow")
         Creglas.title("Cuestionario de La Cámara de las Reglas")
         Creglas.geometry("600x600")
         
+        PregR = [
+        {"p": "¿Se puede comer en el salón?", "r": False},
+        {"p": "¿Se requiere 80% de asistencia?", "r": True},
+        {"p": "¿Hay 10 min de tolerancia?", "r": True},
+        {"p": "¿El plagio se sanciona con reprobación?", "r": True},
+        {"p": "¿Se pueden usar audífonos?", "r": False},
+        {"p": "¿Se permite columpiarse en las sillas?", "r": False},
+        {"p": "¿Las tareas se entregan por Classroom?", "r": True},
+        {"p": "¿El reglamento rige a todos aunque no estén?", "r": True},
+        {"p": "¿Se permite beber líquidos en clase?", "r": False},
+        {"p": "¿La deshonestidad quita derecho a examen?", "r": True}
+        ]
+        
+        Rmos = tk.Label(Creglas, text="", font=("Arial", 12), bg="Lightyellow")
+        Rmos.pack(pady=20)
+        
+        def campreg():
+            global actpreg
+            actpreg = random.choice(PregR)
+            Rmos.config(text=actpreg["p"])
+            
+
+        def verificacion(RespR):
+            global correctasR
+            
+            if RespR == actpreg["r"]:
+                correctasR = correctasR + 1
+                print(f"Correctas: {correctasR}")
+            else:
+                correctasR = 0
+                print("Mal")
+            
+            if correctasR < 2:
+                campreg()
+            else:
+                Rmos.config(text="Bien")
+                global boton2
+                boton2.config(state="normal")
+                Creglas.destroy()
+                Reglas.destroy()
+                messagebox.showinfo("Bien", "Se ha desbloqueado El Oráculo de las Notas")
+        
+        bot1R = tk.Button(Creglas, text="si", font=("Arial", 12), bg="white", command=lambda: verificacion(True))
+        bot1R.pack(pady=20)
+        
+        bot2R = tk.Button(Creglas, text="no", font=("Arial", 12), bg="white", command=lambda: verificacion(False))
+        bot2R.pack(pady=20)
+        
+        campreg()
+        
+
+        
+            
+        
         
     botonR = tk.Button(Reglas,text="Cuestionario", font=("Arial", 8), bg="white", command=Creglas)
     botonR.pack(pady=50)    
- 
+    
+    
+    
 
 
 
@@ -116,7 +184,7 @@ OBJETIVO ESPECÍFICO
         Cskills.title("Skills a desbloquear")
         Cskills.geometry("600x600")
     
-    botonS = tk.Button(Skills, text="Cuestionario", font=("Arial",12), bg="white", command=Cskills)
+    botonS = tk.Button(Skills, text="Cuestionario", font=("Arial",12), bg="white")
     botonS.pack(pady=50)
 
 
@@ -165,13 +233,13 @@ etiqueta.pack(pady=(0, 20))
 Boton1=tk.Button(ventana, text="La Cámara de las Reglas", font=("Arial", 16), bg="Red", command=Reglas)
 Boton1.pack(pady=10)
 
-boton2=tk.Button(ventana, text="El Oráculo de las Notas", font=("Arial", 16), bg="blue", command=Notas)
+boton2=tk.Button(ventana, text="El Oráculo de las Notas", font=("Arial", 16), bg="blue", command=Notas, state="disabled")
 boton2.pack(pady=10)
 
-boton3=tk.Button(ventana, text="Skills a desbloquear", font=("Arial", 16), bg="green", command=Skills)
+boton3=tk.Button(ventana, text="Skills a desbloquear", font=("Arial", 16), bg="green", command=Skills, state="disabled")
 boton3.pack(pady=10)
 
-boton4=tk.Button(ventana, text="La Línea del Tiempo", font=("Arial", 16), bg="orange", command=LineaTiempo)
+boton4=tk.Button(ventana, text="La Línea del Tiempo", font=("Arial", 16), bg="orange", command=LineaTiempo, state="disabled")
 boton4.pack(pady=10)
 
 ventana.mainloop()
