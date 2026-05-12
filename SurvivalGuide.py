@@ -1,9 +1,6 @@
-from pydoc import text
 import tkinter as tk
 import random
 from tkinter import messagebox
-from tkinter import font  
-from sympy import Lambda
 
 correctasR = 0
 actpreg = {}
