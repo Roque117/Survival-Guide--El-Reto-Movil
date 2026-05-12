@@ -24,8 +24,6 @@ def Reglas():
     Retiqueta = tk.Label(Reglas, text="La Cámara de las Reglas", font=("Arial", 24), bg="Lightcyan")
     Retiqueta.pack(pady=10)
 
-    tk.Label(Reglas, text="Reglas del Salon de clases", font=("Arial", 24))
-
     CajaR = tk.Text(Reglas, font=("Arial", 8), bg="white")
     CajaR.insert ("1.0","""1. Se requiere 80% de asistencia para tener derecho a evaluación parcial y 80% de trabajos en clase.
 2. Se permiten 10 minutos de tolerancia y si el alumno llega después de este tiempo puede permanecer en la clase, pero no se  tomará la asistencia (Solamente en los horarios de inicio: 7:00 a.m. y 14:00 p.m.).
