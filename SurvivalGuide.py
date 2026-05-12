@@ -96,7 +96,7 @@ def Reglas():
                 boton2.config(state="normal")
                 Creglas.destroy()
                 Reglas.destroy()
-                messagebox.showinfo("Siguiente Nivel", "Se ha desbloqueado El Oráculo de las Notas")
+                messagebox.showinfo("Nivel 1 Completado", "Se ha desbloqueado El Oráculo de las Notas")
         
         bot1R = tk.Button(Creglas, text="si", font=("Arial", 12), bg="white", command=lambda: verificacion(True))
         bot1R.pack(pady=20)
@@ -108,8 +108,6 @@ def Reglas():
         
     botonR = tk.Button(Reglas,text="Cuestionario", font=("Arial", 8), bg="white", command=Creglas)
     botonR.pack(pady=50)    
-    
-    
     
 
 def Notas():
@@ -158,7 +156,7 @@ TERCER PARCIAL (3P)
             {"n": "¿Cuanto vale el Proyecto Integrador en el Primer Parcial?", "nr": ["10", "diez", "10%"]},
             {"n": "¿Cuanto vale el Proyecto Integrador en el Segundo Parcial?", "nr": ["10", "diez", "10%"]},
             {"n": "¿Cuanto vale el Proyecto Integrador en el Tercer Parcial?", "nr": ["50","cincuenta", "50%"]}
-        ]        
+        ] 
         
         Npreg = tk.Label(Cnotas, text="", font=("Arial", 12), bg="white")
         Npreg.pack(pady="20")
@@ -187,7 +185,7 @@ TERCER PARCIAL (3P)
                 boton3.config(state="normal")
                 Cnotas.destroy()
                 Notas.destroy()
-                messagebox.showinfo("Nivel 2 completado", "Se a completado el Oráculo de las Notas")
+                messagebox.showinfo("Nivel 2 completado", "Se a desbloqueado Skills a desbloquear")
             
         UsuNbot = tk.Button(Cnotas, text="Enviar", font=("Arial", 12), bg="white", command=verificacionN)
         UsuNbot.pack(pady=20)
@@ -231,12 +229,58 @@ OBJETIVO ESPECÍFICO
 
     def Cskills():
         Cskills = tk.Toplevel(Skills)
-        Cskills.config(bg="lightyellow")
+        Cskills.config(bg= "lightcyan")
         Cskills.title("Skills a desbloquear")
         Cskills.geometry("600x600")
     
-    botonS = tk.Button(Skills, text="Cuestionario", font=("Arial",12), bg="white")
+    
+        PregS = [
+            {"s": "¿Flask está como objetivo específico?", "sr": ["no"]},
+            {"s": "¿La base de datos es SQLite?", "sr": ["si"]},
+            {"s": "¿Se usa React Native?", "sr": ["si"]},
+            {"s": "¿JS es un objetivo específico?", "sr": ["si"]},
+            {"s": "¿El servidor es local?", "sr": ["no"]},
+            {"s": "¿Navegations es parte de React?", "sr": ["si"]},
+            {"s": "¿Se usa Java?", "sr": ["no"]}
+        ]
+    
+        Spreg = tk.Label(Cskills, text="", font=("Arial", 12), bg="white")
+        Spreg.pack(pady=20)
+    
+        bot1S = tk.Button(Cskills, text="si", font=("Arial", 12), bg="white", command=lambda: verificacion(True))
+        bot1S.pack(pady=20)
+        
+        bot2S = tk.Button(Cskills, text="no", font=("Arial", 12), bg="white", command=lambda: verificacion(False))
+        bot2S.pack(pady=20)
+        
+        def campregS():
+            global actpregS
+            actpregS = random.choice(PregS)
+            Spreg.config(text=actpregS["s"])
+            
+        def verificacion(RespS):
+            global correctasS
+            
+            if RespS == (actpregS["sr"][0] == "si"):
+                correctasS = correctasS + 1
+            else:
+                correctasS = 0
+            
+            if correctasS < 2:
+                campregS()
+            else:
+                Spreg.config(text="Bien")
+                boton4.config(state="normal")
+                Cskills.destroy()
+                Skills.destroy()
+                messagebox.showinfo("Nivel 3 completado", "Se a desbloqueado La Línea del Tiempo")
+                
+        campregS()
+    
+    
+    botonS = tk.Button(Skills, text="Cuestionario", font=("Arial",12), bg="white", command=Cskills)
     botonS.pack(pady=50)
+
 
 
 def LineaTiempo():
@@ -261,18 +305,61 @@ def LineaTiempo():
     Tcaja.pack(pady=10)
 
 
-    def Ctiempo():
-        Ctiempo = tk.Tk(ventana)
+    def Cuesttiempo():
+        Ctiempo = tk.Toplevel(ventana)
         Ctiempo.config(bg="lightyellow")
         Ctiempo.title("Cuestionario de La Línea del Tiempo")
         Ctiempo.geometry("600x600")
         
-    botonT = tk.Button(LineaTiempo, text="Cuestionario", font=("Arial", 8), bg="white", command=Ctiempo)
+        PregS = [
+            {"s": "¿El primer parcial es el 02-06-26?", "sr": ["si"]},
+            {"s": "¿El segundo parcial es el 07-07-26?", "sr": ["si"]},
+            {"s": "¿El tercer parcial es el 11-08-26?", "sr": ["si"]},
+            {"s": "¿El examen final es el 17-08-26?", "sr": ["si"]},
+            {"s": "¿El 15-06-26 es un día no laborable?", "sr": ["si"]},
+            {"s": "¿Las vacaciones son del 20-07-26 al 24-07-26?", "sr": ["si"]},
+            {"s": "¿El examen final es el 17-09-26?", "sr": ["no"]},
+            {"s": "¿El primer parcial es el 02-07-26?", "sr": ["no"]},
+            {"s": "¿El segundo parcial es el 07-08-26?", "  sr": ["no"]},
+            {"s": "¿El tercer parcial es el 11-09-26?", "sr": ["no"]}
+        ]   
+        
+        Spreg = tk.Label(Ctiempo, text="", font=("Arial", 12), bg="white")
+        Spreg.pack(pady=20)
+        
+        bot1S = tk.Button(Ctiempo, text="si", font=("Arial", 12), bg="white", command=lambda: verificacion(True))
+        bot1S.pack(pady=20)
+        
+        bot2S = tk.Button(Ctiempo, text="no", font=("Arial", 12), bg="white", command=lambda: verificacion(False))
+        bot2S.pack(pady=20)
+        
+        def campregS():
+            global actpregL
+            actpregL = random.choice(PregS)
+            Spreg.config(text=actpregL["s"])
+            
+        def verificacion(RespS):
+            global correctasL
+            
+            if RespS == (actpregL["sr"][0] == "si"):
+                correctasL = correctasL + 1
+            else:
+                correctasL = 0
+            
+            if correctasL < 2:
+                campregS()
+            else:
+                Spreg.config(text="Bien")
+                Ctiempo.destroy()
+                Tiempo.destroy()
+                messagebox.showinfo("Nivel 4 completado", "Se a completado Todo el juego")
+                
+        campregS()
+        
+    botonT = tk.Button(Tiempo, text="Cuestionario", font=("Arial", 8), bg="white", command=Cuesttiempo)
     botonT.pack(pady=50)
 
 
-
-#
 ventana=tk.Tk()
 ventana.config(bg="black")
 ventana.title("Survival Guide")
