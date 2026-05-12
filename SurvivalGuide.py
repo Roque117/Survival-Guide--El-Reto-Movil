@@ -317,7 +317,7 @@ def LineaTiempo():
             {"s": "¿Las vacaciones son del 20-07-26 al 24-07-26?", "sr": ["si"]},
             {"s": "¿El examen final es el 17-09-26?", "sr": ["no"]},
             {"s": "¿El primer parcial es el 02-07-26?", "sr": ["no"]},
-            {"s": "¿El segundo parcial es el 07-08-26?", "  sr": ["no"]},
+            {"s": "¿El segundo parcial es el 07-08-26?", "sr": ["no"]},
             {"s": "¿El tercer parcial es el 11-09-26?", "sr": ["no"]}
         ]   
         
