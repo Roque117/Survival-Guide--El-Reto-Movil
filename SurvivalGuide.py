@@ -49,7 +49,6 @@ def Reglas():
 
     
     def Creglas():
-        global pregunta_actual
         Creglas = tk.Toplevel(Reglas)
         Creglas.configure(bg="lightyellow")
         Creglas.title("Cuestionario de La Cámara de las Reglas")
@@ -349,8 +348,8 @@ def LineaTiempo():
                 Spreg.config(text="Bien")
                 Ctiempo.destroy()
                 Tiempo.destroy()
-                messagebox.showinfo("Nivel 4 completado", "Se a completado Todo el juego")
-                
+                messagebox.showinfo("Nivel 4 completado", "Se a completado Todo el juego ")
+                messagebox.showinfo("FELICIDADES", "FELICIDADES")
         campregS()
         
     botonT = tk.Button(Tiempo, text="Cuestionario", font=("Arial", 8), bg="white", command=Cuesttiempo)
